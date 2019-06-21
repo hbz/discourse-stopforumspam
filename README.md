@@ -1,6 +1,6 @@
 # discourse-stopforumspam
 
-Right after a new user signs up for your forum, this plugin will check the user's email address, forum username, and/or IP address against the [StopForumSpam](https://www.stopforumspam.com) database. If the user is found to be a suspected spammer, their user account will be auto silenced.
+Right after a new user signs up for your forum, this plugin will check the user's email address, forum username, and/or IP address (depending on your plugin settings) against the [StopForumSpam](https://www.stopforumspam.com) database. If the user is found to be a suspected spammer, their user account will be auto silenced in Discourse.
 
 ## Installation
 
@@ -14,9 +14,9 @@ https://github.com/singerscreations/discourse-stopforumspam.git
 After installing this plugin in Discourse, you'll be able to configure the following settings in the Plugins section of the Discourse Settings:
 
 - **stopforumspam enabled:** Enables the plugin
-- **stopforumspam check email:**
-- **stopforumspam check username:** 
-- **stopforumspam check ip:** 
+- **stopforumspam check email:** Checks the user's email address against the StopForumSpam database
+- **stopforumspam check username:** Checks the user's username against the StopForumSpam database 
+- **stopforumspam check ip:** Checks the user's IP address against the StopForumSpam database
 
 ## Issues
 
