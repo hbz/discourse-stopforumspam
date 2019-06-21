@@ -24,4 +24,4 @@ If you have issues or suggestions for the plugin, please contact mike@singerscre
 
 ## Authors
 
-This plugin was created and is maintained by Mike Singer ([@msinger]([https://meta.discourse.org/u/msinger])).
+This plugin was created and is maintained by Mike Singer ([@msinger](https://meta.discourse.org/u/msinger)).
