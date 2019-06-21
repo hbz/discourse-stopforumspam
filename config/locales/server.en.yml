@@ -1,10 +1,9 @@
 en:
   site_settings:
-    stopforumspam_enabled: "Use StopForumSpam to auto silence new users that are known spammers?"
-    stopforumspam_check_email: "Silence new user if email is found in StopForumSpam database."
-    stopforumspam_check_username: "Silence new user if username is found in StopForumSpam database."
-    stopforumspam_check_ip: "Silence new user if IP is found in StopForumSpam database."
-    stopforumspam_notify_when_silenced: "Send a notification to moderators when a user is auto silenced."
+    stopforumspam_enabled: "Use Stop Forum Spam to auto silence new users that are known spammers?"
+    stopforumspam_check_email: "Silence new user if email is found in Stop Forum Spam database."
+    stopforumspam_check_username: "Silence new user if username is found in Stop Forum Spam database."
+    stopforumspam_check_ip: "Silence new user if IP is found in Stop Forum Spam database."
    
   stopforumspam:
-    silenced_reason: "User was found in StopForumSpam's database of suspected spammers."
+    silenced_reason: "User was found in Stop Forum Spam's database of suspected spammers."
