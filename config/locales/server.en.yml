@@ -1,0 +1,18 @@
+en:
+  site_settings:
+    stopforumspam_enabled: "Use StopForumSpam to check if new users are known spammers?"
+    stopforumspam_check_email: "Send new user to review queue if email is found in spammer list."
+    stopforumspam_min_email_frequency: "Minimum times email must appear in StopForumSpam database."
+    stopforumspam_check_username: "Send new user to review queue if username is found in spammer list."
+    stopforumspam_min_username_frequency: "Minimum times username must appear in StopForumSpam database."
+    stopforumspam_check_ip: "Send new user to review queue if IP is found in spammer list."
+    stopforumspam_min_ip_frequency: "Minimum times IP must appear in StopForumSpam database."
+
+  stopforumspam:
+    delete_reason: "determined by %{performed_by} to be a spammer"
+
+  reviewables:
+    reasons:
+      stopforumspam_spam_email: "StopForumSpam flagged this user as a potential spammer based on their email address."
+      stopforumspam_spam_user: "StopForumSpam flagged this user as a potential spammer based on their username."
+      stopforumspam_spam_ip: "StopForumSpam flagged this user as a potential spammer based on their IP address."

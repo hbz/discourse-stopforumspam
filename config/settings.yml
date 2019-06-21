@@ -1,0 +1,22 @@
+plugins:
+  stopforumspam_enabled:
+    default: true
+    client: true
+  stopforumspam_check_email:
+    default: true
+    client: true
+  stopforumspam_min_email_frequency:
+    default: 1
+    client: true
+  stopforumspam_check_username:
+    default: true
+    client: true
+  stopforumspam_min_username_frequency:
+    default: 1
+    client: true
+  stopforumspam_check_ip:
+    default: true
+    client: true
+  stopforumspam_min_ip_frequency:
+    default: 1
+    client: true
