@@ -6,4 +6,4 @@ en:
     stopforumspam_check_ip: "Silence new user if IP is found in Stop Forum Spam database."
    
   stopforumspam:
-    silenced_reason: "User was found in Stop Forum Spam's database of suspected spammers."
+    silenced_reason: "User was found in Stop Forum Spam's database of known spammers."
