@@ -1,6 +1,8 @@
 # discourse-stopforumspam
 
-Right after a new user signs up on your forum (before they have time to post), this plugin will check the user's email address, forum username, and/or IP address (depending on your plugin settings) against the [Stop Forum Spam](https://www.stopforumspam.com) database. If the user is found in this database of suspected spammers, their user account will be auto silenced in Discourse.
+The Stop Forum Spam plugin can help weed out human spammers who are able to bypass Discourse’s built-in spam tools (thanks to their awesome human powers). Right after a new user signs up on your 
+forum (before they have time to post), this plugin will check the user's email address, forum username, and/or IP address (depending on your plugin settings) against 
+the [Stop Forum Spam](https://www.stopforumspam.com) database. If the user is found in this database of suspected spammers, their user account will be immediately auto silenced in Discourse.
 
 **Note:** If needed, you can unsilence the user in the **Users** &rarr; **Silenced** section of the Discourse Admin.
 
@@ -19,11 +21,11 @@ After installing this plugin in Discourse, you'll be able to configure the follo
 - **stopforumspam check username:** Checks the user's username against the Stop Forum Spam database 
 - **stopforumspam check ip:** Checks the user's IP address against the Stop Forum Spam database
 
-**Note:** The user will be silenced if the email address, username, or IP address is found. If you have more than one of these settings enabled, the user will be deemed a spammer as soon as one of them is found in the Stop Forum Spam database.
+**Note:** If you have more than one of these check settings enabled, the user will be deemed a spammer as soon as one of them is found in the Stop Forum Spam database.
 
 ## Issues
 
-Please contact mike@singerscreations.com if you run into any issues or have a suggestion to improve this plugin.
+Please contact mike@singerscreations.com if you run into any issues or have a suggestion to improve this plugin. You can also post over in [this topic](https://meta.discourse.org/t/discourse-stop-forum-spam-plugin-auto-silence-spammers/121037) in the Discourse community forum.
 
 ## Authors
 
