@@ -2,7 +2,7 @@
 
 The Stop Forum Spam plugin can help weed out human spammers who are able to bypass Discourse’s built-in spam tools (thanks to their awesome human powers). Right after a new user signs up on your 
 forum (before they have time to post), this plugin will check the user's email address, forum username, and/or IP address (depending on your plugin settings) against 
-the [Stop Forum Spam](https://www.stopforumspam.com) database. If the user is found in this database of suspected spammers, their user account will be immediately auto silenced in Discourse.
+the [Stop Forum Spam](https://www.stopforumspam.com) database. If the user is found in this database of known spammers, their user account will be immediately auto silenced in Discourse.
 
 **Note:** If needed, you can unsilence the user in the **Users** &rarr; **Silenced** section of the Discourse Admin.
 
