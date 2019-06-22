@@ -1,6 +1,6 @@
 en:
   site_settings:
-    stopforumspam_enabled: "Use Stop Forum Spam to auto silence new users that are known spammers?"
+    stopforumspam_enabled: "Enable the Stop Forum Spam plugin. This will auto silence new users who are in the Stop Forum Spam database of known spammers."
     stopforumspam_check_email: "Silence new user if email is found in Stop Forum Spam database."
     stopforumspam_check_username: "Silence new user if username is found in Stop Forum Spam database."
     stopforumspam_check_ip: "Silence new user if IP is found in Stop Forum Spam database."
