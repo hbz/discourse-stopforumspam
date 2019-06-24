@@ -13,11 +13,54 @@ module DiscourseStopForumSpam
   def self.check_for_spam(user)
     return if user.blank?
 	
+	puts "[StopForumSpam] Checking #{user.email}"
+	
     DiscourseStopForumSpam.with_client do |client|
 	  if client.is_spammer(user)
+	    puts "[StopForumSpam] #{user.email} was found in spam database"
+	  	  
 		UserSilencer.new(user, Discourse.system_user, reason: I18n.t("stopforumspam.silenced_reason")).silence
+		DiscourseStopForumSpam.delete_user_field(user, 'stopforumspam_recheck')
+	  else
+	    if SiteSetting.stopforumspam_recheck_users_after_hours > 0
+			DiscourseStopForumSpam.set_user_field(user, 'stopforumspam_recheck', '')
+	    end
 	  end
 	end
+  end
+  
+  def self.recheck_for_spam(user)
+    return if user.blank?
+	
+	puts "[StopForumSpam] Rechecking #{user.email}"
+	
+    DiscourseStopForumSpam.with_client do |client|
+	  if client.is_spammer(user)
+		puts "[StopForumSpam] #{user.email} was found in spam database"
+		
+		UserSilencer.new(user, Discourse.system_user, reason: I18n.t("stopforumspam.silenced_reason")).silence
+	  end
+	  
+	  DiscourseStopForumSpam.delete_user_field(user, 'stopforumspam_recheck')
+	end
+  end
+  
+  def self.set_user_field(user, name, value)
+	return if user.blank? || name.blank? || value.nil?
+	
+	if user.respond_to?(:upsert_custom_fields)
+      user.upsert_custom_fields(name => value)
+    else
+      user.custom_fields.merge!(name => value)
+      user.save_custom_fields
+    end
+  end
+  
+  def self.delete_user_field(user, name)
+    return false if user.blank? || name.blank?
+  
+    user.custom_fields.delete(name)
+    user.save_custom_fields
   end
 
 end

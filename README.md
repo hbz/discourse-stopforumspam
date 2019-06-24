@@ -16,10 +16,11 @@ Follow [these instructions](https://meta.discourse.org/t/install-plugins-in-disc
 
 After installing this plugin in Discourse, you'll be able to configure the following settings in the **Settings** &rarr; **Plugins** section of the Discourse Admin:
 
-- **stopforumspam enabled:** Enable or disable the plugin
-- **stopforumspam check email:** Checks the user's email address against the Stop Forum Spam database
-- **stopforumspam check username:** Checks the user's username against the Stop Forum Spam database 
-- **stopforumspam check ip:** Checks the user's IP address against the Stop Forum Spam database
+- **stopforumspam enabled:** Enable the Stop Forum Spam plugin. This will auto silence new users who are in the Stop Forum Spam database of known spammers.
+- **stopforumspam check email:** Silence new user if email is found in Stop Forum Spam database.
+- **stopforumspam check username:** Silence new user if username is found in Stop Forum Spam database. 
+- **stopforumspam check ip:** Silence new user if IP is found in Stop Forum Spam database.
+- **stopforumspam recheck users after hours:** Number of hours to wait before rechecking new users a second time to make sure they are still not in the Stop Forum Spam database. Set to 0 to disable recheck.
 
 **Note:** If you have more than one of these check settings enabled, the user will be deemed a spammer as soon as one of them is found in the Stop Forum Spam database.
 
