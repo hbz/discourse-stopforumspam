@@ -2,7 +2,7 @@
 # about: Silences new users who are found in the StopForumSpam.com database of suspected spammers
 # version: 1.0.1
 # authors: Mike Singer
-# site: https://github.com/singerscreations/discourse-stopforumspam
+# url: https://github.com/singerscreations/discourse-stopforumspam
 
 enabled_site_setting :stopforumspam_enabled
 
