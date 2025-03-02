@@ -11,6 +11,9 @@ plugins:
   stopforumspam_check_ip:
     default: true
     client: true
+  stopforumspam_minimum_entries_found:
+    default: 1
+    client: true
   stopforumspam_recheck_users_after_hours:
     default: 0
     client: true

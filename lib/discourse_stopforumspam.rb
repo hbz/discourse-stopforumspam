@@ -13,32 +13,40 @@ module DiscourseStopForumSpam
   def self.check_for_spam(user)
     return if user.blank?
 	
-	puts "[StopForumSpam] Checking #{user.email}"
+	puts "[StopForumSpam] Checking '#{user.email}' in StopForumSpam..."
 	
     DiscourseStopForumSpam.with_client do |client|
-	  if client.is_spammer(user)
-	    puts "[StopForumSpam] #{user.email} was found in spam database"
+      reason = client.is_spammer(user)
+
+	  if reason
+	    puts "[StopForumSpam] #{user.email}: #{reason}"
 	  	  
-		UserSilencer.new(user, Discourse.system_user, reason: I18n.t("stopforumspam.silenced_reason")).silence
+		UserSilencer.new(user, Discourse.system_user, reason: reason).silence
 		DiscourseStopForumSpam.delete_user_field(user, 'stopforumspam_recheck')
-	  else
-	    if SiteSetting.stopforumspam_recheck_users_after_hours > 0
-			DiscourseStopForumSpam.set_user_field(user, 'stopforumspam_recheck', '')
+      else
+        puts "[StopForumSpam] No spam thresholds exceeded for '#{user.email}' in StopForumSpam."
+        
+        if SiteSetting.stopforumspam_recheck_users_after_hours > 0
+          DiscourseStopForumSpam.set_user_field(user, 'stopforumspam_recheck', '')
+        else
+          DiscourseStopForumSpam.delete_user_field(user, 'stopforumspam_recheck')
 	    end
-	  end
+      end
 	end
   end
   
   def self.recheck_for_spam(user)
     return if user.blank?
 	
-	puts "[StopForumSpam] Rechecking #{user.email}"
+	puts "[StopForumSpam] Rechecking '#{user.email}' in StopForumSpam..."
 	
     DiscourseStopForumSpam.with_client do |client|
-	  if client.is_spammer(user)
-		puts "[StopForumSpam] #{user.email} was found in spam database"
+      reason = client.is_spammer(user)
+	  
+      if reason
+		puts "[StopForumSpam] #{reason}"
 		
-		UserSilencer.new(user, Discourse.system_user, reason: I18n.t("stopforumspam.silenced_reason")).silence
+		UserSilencer.new(user, Discourse.system_user, reason: reason).silence
 	  end
 	  
 	  DiscourseStopForumSpam.delete_user_field(user, 'stopforumspam_recheck')

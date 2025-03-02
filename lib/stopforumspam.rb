@@ -1,69 +1,78 @@
 # frozen_string_literal: true
 
 require 'excon'
+require 'nokogiri'
 
 class StopForumSpam
-  class Error < StandardError; end
-
-  class Client
-    PLUGIN_NAME = 'discourse-stopforumspam'.freeze
-	API_URL = 'http://api.stopforumspam.org/api'.freeze
-	RESPONSE_APPEARS = '<appears>yes</appears>'.freeze
-
-    def initialize()
-    end
-
-    def self.with_client()
-      client = self.new()
-      yield client if block_given?
-    end
-
-    def is_spammer(user)
-      (SiteSetting.stopforumspam_check_email && check_email(user.email)) || (SiteSetting.stopforumspam_check_username && check_username(user.username)) || (SiteSetting.stopforumspam_check_ip && check_ip(user.ip_address)) 
-    end
-	
-	def check_email(email)
-	  response = post("#{API_URL}?email=#{email}")
-      response_body = response.body
-	  response_body.include? RESPONSE_APPEARS
-	end
-	
-	def check_username(username)
-	  response = post("#{API_URL}?username=#{username}")
-      response_body = response.body
-	  response_body.include? RESPONSE_APPEARS
-	end
-	
-	def check_ip(ip)
-	  response = post("#{API_URL}?ip=#{ip}")
-      response_body = response.body
-	  response_body.include? RESPONSE_APPEARS
-	end	
-
-    def self.user_agent_string
-      @user_agent_string ||= begin
-        plugin_version = Discourse.plugins.find do |plugin|
-          plugin.name == PLUGIN_NAME
-        end.metadata.version
-
-        "Discourse/#{Discourse::VERSION::STRING} | #{PLUGIN_NAME}/#{plugin_version}"
-      end
-    end
-
-    def post(url)
-      response = Excon.post(url,
-        headers: {
-          'Content-Type' => 'application/x-www-form-urlencoded',
-          'User-Agent' => self.class.user_agent_string
-        }
-      )
-
-      if response.status != 200
-        raise StopForumSpam::Error.new(response.status_line)
-      end
-
-      response
-    end
-  end
+    class Error < StandardError; end
   
+    class Client
+      API_URL = "http://api.stopforumspam.org/api"
+
+      def initialize()
+      end
+
+      def self.with_client()
+        client = self.new()
+        yield client if block_given?
+      end
+
+      def check_email(email)
+        check_spam("email", email)
+      end
+    
+      def check_username(username)
+        check_spam("username", username)
+      end
+    
+      def check_ip(ip)
+        check_spam("ip", ip)
+      end
+
+      def is_spammer(user)
+        return nil if user.nil?
+    
+        if SiteSetting.stopforumspam_check_email
+          result = check_email(user.email)
+          return "Email '#{user.email}' appears #{result[:frequency]} time#{'s' unless result[:frequency] == 1} in StopForumSpam." if result[:appears]
+        end
+    
+        if SiteSetting.stopforumspam_check_username
+          result = check_username(user.username)
+          return "Username '#{user.username}' appears #{result[:frequency]} time#{'s' unless result[:frequency] == 1} in StopForumSpam." if result[:appears]
+        end
+    
+        if SiteSetting.stopforumspam_check_ip
+          result = check_ip(user.ip_address)
+          return "IP address '#{user.ip_address}' appears #{result[:frequency]} time#{'s' unless result[:frequency] == 1} in StopForumSpam." if result[:appears]
+        end
+    
+        nil
+      end
+    
+      private
+    
+      def check_spam(type, value)
+        response = fetch_stopforumspam_data(type, value)
+        return { appears: false, frequency: 0 } unless response
+
+        puts "[StopForumSpam] #{Nokogiri::XML(response).to_xml(indent: 0).gsub(/>\s+</, '><').strip}"
+    
+        parsed_response = Nokogiri::XML(response)
+        appears = parsed_response.at_xpath("//appears")&.text == "yes"
+        frequency = parsed_response.at_xpath("//frequency")&.text.to_i
+    
+        min_entries = SiteSetting.stopforumspam_minimum_entries_found.to_i
+    
+        { appears: appears && (min_entries == 0 || frequency >= min_entries), frequency: frequency }
+      end
+    
+      def fetch_stopforumspam_data(type, value)
+        uri = "#{API_URL}?#{type}=#{URI.encode_www_form_component(value)}&xml"
+        response = Excon.get(uri, headers: { "User-Agent" => "Discourse-StopForumSpam-Plugin" })
+
+        response.status == 200 ? response.body : nil
+      end
+
+    end
 end
