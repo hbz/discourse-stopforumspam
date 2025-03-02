@@ -1,6 +1,6 @@
 # name: discourse-stopforumspam
 # about: Auto silence new users who are found in the StopForumSpam.com database of suspected spammers.
-# version: 2.0
+# version: 2.1
 # authors: Mike Singer
 # meta_topic_id: 121037
 # url: https://github.com/singerscreations/discourse-stopforumspam
