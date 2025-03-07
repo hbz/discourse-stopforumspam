@@ -24,6 +24,8 @@ After installing this plugin in Discourse, you'll be able to configure the follo
 
 - **stopforumspam check ip:** Silence new user if IP is found in Stop Forum Spam database.
 
+- **stopforumspam minimum entries found:** User must appear in the Stop Forum Spam database at least this number of times.
+
 - **stopforumspam recheck users after hours:** Number of hours to wait before rechecking new users a second time to make sure they are still not in the Stop Forum Spam database. Set to 0 to disable recheck.
 
 **Note:** If you have more than one of these check settings enabled, the user will be deemed a spammer as soon as one of them is found in the Stop Forum Spam database.
