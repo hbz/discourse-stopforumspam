@@ -1,11 +1,23 @@
 en:
   site_settings:
-    stopforumspam_enabled: "Enable the Stop Forum Spam plugin. This will auto silence new users who are in the Stop Forum Spam database of known spammers."
-    stopforumspam_check_email: "Silence new user if email is found in Stop Forum Spam database."
-    stopforumspam_check_username: "Silence new user if username is found in Stop Forum Spam database."
-    stopforumspam_check_ip: "Silence new user if IP address is found in Stop Forum Spam database."
-    stopforumspam_minimum_entries_found: "User must appear in the Stop Forum Spam database at least this number of times."
-    stopforumspam_recheck_users_after_hours: "Number of hours to wait before rechecking new users a second time to make sure they are still not in the Stop Forum Spam database. Set to 0 to disable recheck."
+    stopforumspam_enabled:
+      title: "Enable Stop Forum Spam"
+      description: "This will auto silence new users who are in the Stop Forum Spam database of known spammers."
+    stopforumspam_check_email:
+      title: "Check Email"
+      description: "Silence new user if email is found in Stop Forum Spam database."
+    stopforumspam_check_username:
+      title: "Check Username"
+      description: "Silence new user if username is found in Stop Forum Spam database."
+    stopforumspam_check_ip:
+      title: "Check IP"
+      description: "Silence new user if IP address is found in Stop Forum Spam database."
+    stopforumspam_minimum_entries_found:
+      title: "Minimum Entries Found"
+      description: "User must appear in the Stop Forum Spam database at least this number of times."
+    stopforumspam_recheck_users_after_hours:
+      title: "Recheck Users After Hours"
+      description: "Number of hours to wait before rechecking new users a second time to make sure they are still not in the Stop Forum Spam database. Set to 0 to disable recheck."
     stopforumspam_api_url:
       title: "StopForumSpam API URL"
       description: "The API endpoint URL for StopForumSpam. Leave blank to use the default: http://api.stopforumspam.org/api"
