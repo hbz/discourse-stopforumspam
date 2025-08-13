@@ -18,7 +18,6 @@ plugins:
     default: 0
     client: true
   stopforumspam_api_url:
-    type: string
-    client: true
     default: ""
-    description: "The API endpoint URL for StopForumSpam. Leave blank to use the default: http://api.stopforumspam.org/api"
+    client: true
+    type: string # type added for clarity, it is inferred from the default value
