@@ -1,22 +1,23 @@
-stopforumspam_enabled:
-  default: true
-  client: true
-stopforumspam_check_email:
-  default: true
-  client: true
-stopforumspam_check_username:
-  default: false
-  client: true
-stopforumspam_check_ip:
-  default: true
-  client: true
-stopforumspam_minimum_entries_found:
-  default: 1
-  client: true
-stopforumspam_recheck_users_after_hours:
-  default: 0
-  client: true
-stopforumspam_api_url:
-  default: ""
-  client: true
-  type: string
+plugins:
+  stopforumspam_enabled:
+    default: true
+    client: true
+  stopforumspam_check_email:
+    default: true
+    client: true
+  stopforumspam_check_username:
+    default: false
+    client: true
+  stopforumspam_check_ip:
+    default: true
+    client: true
+  stopforumspam_minimum_entries_found:
+    default: 1
+    client: true
+  stopforumspam_recheck_users_after_hours:
+    default: 0
+    client: true
+  stopforumspam_api_url:
+    default: ""
+    client: true
+    type: string # type added for clarity, it is inferred from the default value
