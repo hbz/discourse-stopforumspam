@@ -17,3 +17,7 @@ plugins:
   stopforumspam_recheck_users_after_hours:
     default: 0
     client: true
+  stopforumspam_api_url:
+    type: string
+    client: true
+    description: "The API endpoint URL for StopForumSpam. Leave blank to use the default: http://api.stopforumspam.org/api"

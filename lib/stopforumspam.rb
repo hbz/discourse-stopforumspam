@@ -68,7 +68,8 @@ class StopForumSpam
       end
     
       def fetch_stopforumspam_data(type, value)
-        uri = "#{API_URL}?#{type}=#{URI.encode_www_form_component(value)}&xml"
+        api_url = SiteSetting.stopforumspam_api_url.presence || "http://api.stopforumspam.org/api"
+        uri = "#{api_url}?#{type}=#{URI.encode_www_form_component(value)}&xml"
         response = Excon.get(uri, headers: { "User-Agent" => "Discourse-StopForumSpam-Plugin" })
 
         response.status == 200 ? response.body : nil
